@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import Create from "./Create";
+import { useEffect } from "react";
 
 function Home() {
     const [todos, setTodos] = useState([])
+    useEffect(() => {
+        axios.get('http://localhost:3001/get')
+        .then(result => setTodos(result.data))
+        .catch(err => console.log(err))
+    }, [])
     return (
         <div className='home'>
             <h2>Todo List</h2>
