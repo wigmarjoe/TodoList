@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Create from "./Create";
-import { useEffect } from "react";
 import { BsCheckCircleFill, BsCircleFill, BsFillTrashFill } from 'react-icons/bs'
+import  Axios  from "axios";
 
 function Home() {
     const [todos, setTodos] = useState([])
     useEffect(() => {
-        axios.get('http://localhost:3001/get')
+        Axios.get('http://localhost:3001/get')
         .then(result => setTodos(result.data))
         .catch(err => console.log(err))
     }, [])
 
     const handleEdit = (id) => {
-        axios.put(`http://localhost:3001/update/${id}`)
+        Axios.put(`http://localhost:3001/update/${id}`)
         .then(result => {
             location.reload()
         })
@@ -20,7 +20,7 @@ function Home() {
     }
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:3001/delete/${id}`)
+        Axios.delete(`http://localhost:3001/delete/${id}`)
         .then(result => {
             location.reload()
         })
