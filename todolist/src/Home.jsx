@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Create from "./Create";
 import { useEffect } from "react";
-import { Bs0CircleFill, BsFill0CircleFill, BsFillTrash2Fill } from 'react-icons/bs'
+import { BsCheckCircleFill, BsCircleFill } from 'react-icons/bs'
 
 function Home() {
     const [todos, setTodos] = useState([])
@@ -30,8 +30,10 @@ function Home() {
                 todos.map(todo => (
                     <div className='task'>
                         <div className='checkbox' onClick={() => handleEdit(todo._id)}>
-                            <BsFillCircleFill className='icon'/>
-                            <p>{todo.task}</p>                
+                            {todo.done ? <BsCheckCircleFill className="icon"></BsCheckCircleFill>
+                            : <BsCircleFill className='icon'/>
+                            }
+                            <p className={todo.done ? "line_through" : ""}>{todo.task}</p>                
                         </div>
                         <div>
                             <span><BsFillTrashFill className='icon'/></span>
